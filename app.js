@@ -1,12 +1,27 @@
 
     // Create Dino Constructor
 
-
+function Dino(species, weight, height, diet, when, where, fact){
+    this.species = species;
+    this.weight = weight;
+    this.height = height;
+    this.diet  = diet;
+    this.when = when;
+    this.where = where;
+    this.fact = fact;
+}
     // Create Dino Objects
+var data = JSON.parse(dinos);
 
+let dinoArray = data.map(obj => {
+    let dino = new Dino(obj.species, obj.weight, obj.height, obj.diet, obj.when, obj.where, obj.fact);
+    return dino;
+})
 
     // Create Human Object
+function Human(weight, height, diet){
 
+}
     // Use IIFE to get human data from form
 
 
