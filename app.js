@@ -20,7 +20,9 @@ let dinoArray = data.map(obj => {
 
     // Create Human Object
 function Human(weight, height, diet){
-
+    this.weight = weight;
+    this.height = height;
+    this.diet = diet;
 }
     // Use IIFE to get human data from form
 
@@ -28,15 +30,41 @@ function Human(weight, height, diet){
     // Create Dino Compare Method 1
     // NOTE: Weight in JSON file is in lbs, height in inches. 
 
-    
+function compareHeight(Human, Dino){
+    let heightRatio = Human.height / Dino.height;
+
+    if (heightRatio > 1){
+        return `You are ${heightRatio} times as tall as ${Dino.species}!`;
+    }
+    else return `${Dino.species} is ${heightRatio} times as tall as you!`;
+}    
     // Create Dino Compare Method 2
     // NOTE: Weight in JSON file is in lbs, height in inches.
 
-    
+function compareWeight(Human, Dino){
+    let weightRatio = Human.weight / Dino.weight;
+
+    if (weightRatio > 1){
+        return `You are ${weightRatio} times as tall as ${Dino.species}!`;
+    }
+    else return `${Dino.species} is ${weightRatio} times as tall as you!`;
+}    
     // Create Dino Compare Method 3
     // NOTE: Weight in JSON file is in lbs, height in inches.
 
+function compareDiet(Human, Dino){
+    let diet_map = {
+        "carnivore" : "meat",
+        "herbivore" : "plants",
+        "omnivore" : "everything"
+    };
 
+    if (Human.diet == Dino.diet){
+        return `You and ${Dino.species} have the same diet; you both eat ${diet_map[Dino.diet]}!`;
+    }
+
+    else return `${Dino.species} eats ${Dino.diet}, while you eat ${Human.diet}`;
+}
     // Generate Tiles for each Dino in Array
   
         // Add tiles to DOM
