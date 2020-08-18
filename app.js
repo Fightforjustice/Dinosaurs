@@ -10,25 +10,25 @@ function Dino(species, weight, height, diet, when, where, fact){
     this.where = where;
     this.fact = fact;
 }
-    // Create Dino Objects
+    //use AJAX to import data from json file
 const xhttp = new XMLHttpRequest();
 let dino = "";
 xhttp.onreadystatechange = function () {
   if (this.readyState == 4 && this.status == 200) {
-    // dino = this.responseText;
-    // console.log(dino)
-    dino = JSON.parse(this.responseText);
+    let dinoResponse = this.responseText;
+    console.log(dinoResponse)
+    dino = JSON.parse(dinoResponse);
     console.log(typeof dino);
   }
 };
 xhttp.open("GET", "dino.json", true);
 xhttp.send();
-
+    // Create Dino Objects
 let dinoArray = dino.map(obj => {
     let dObj = new Dino(obj.species, obj.weight, obj.height, obj.diet, obj.when, obj.where, obj.fact);
     return dObj;
 })
-
+    //Create tile objects for displaying dino info
 function Tile(species, image, fact){
     this.species = species;
     this.image = image;
@@ -44,6 +44,7 @@ function Human(weight, height, diet){
 
 var generate = document.getElementById('dino-compare');
 
+    //get human data using IIFE
 generate.addEventListener('submit', () => {
     let human_data = (function getHumanData(){
 
@@ -62,18 +63,19 @@ generate.addEventListener('submit', () => {
         return human;
     })();
 
-    generate.style = "display: none";
+    //remove form after one second; allow for gathering of data
+    setTimeout(() => { generate.style = "display: none"; }, 1000);
 
+    //populate dinosaur tiles with their info
     let dino_tiles = dinoArray.map(obj => {
         
+        //randomize which of six dino facts is chosen; use compare methods for three of the facts
         let rand_facts = [compareHeight(human_data, obj), compareWeight(human_data, obj), compareDiet(human_data, obj), 
         `${obj.species} lived during the ${obj.when} era.`, `${obj.species} lived in ${obj.where}.`, obj.fact];
 
         let chosenFact = "";
 
         let image = `images/${obj.species}.png`;
-
-        /*TODO: import image according to species*/
         
         if (obj.species == "pigeon"){
             chosenFact = obj.fact;
@@ -87,9 +89,13 @@ generate.addEventListener('submit', () => {
 
     });
 
+    //create grid element with pre-defined css 'grid' class 
+
     let grid = document.createElement('div');
 
     grid.setAttribute('class', 'grid');
+
+    //randomly add four tiles from dino tiles to grid
 
     for (let i = 0; i < 4; i++){
         let index = Math.floor(Math.random * 4);
@@ -124,6 +130,7 @@ generate.addEventListener('submit', () => {
 
     }
     
+    //add human tile at fifth position; no fact paragraph added
     let humanTile = document.createElement('div');
 
     humanTile.setAttribute('class', 'grid-item');
@@ -141,6 +148,8 @@ generate.addEventListener('submit', () => {
     humanTile.append(pic);
 
     grid.append(humanTile);  
+
+    //randomly add remaining four dino tiles
 
     for (let i = 0; i < 4; i++){
         let index = Math.floor(Math.random * 4);
@@ -175,10 +184,10 @@ generate.addEventListener('submit', () => {
 
     }  
 
-    document.append('grid');
+    setTimeout(() => { document.append('grid'); }, 2000);
 
 });
-    // Use IIFE to get human data from form
+    
 
 
     // Create Dino Compare Method 1
