@@ -18,13 +18,14 @@ xhttp.onreadystatechange = function () {
     let dinoResponse = this.responseText;
     console.log(dinoResponse)
     dino = JSON.parse(dinoResponse).Dinos;
-    console.log(dino);
     console.log(typeof dino);
   }
 };
 xhttp.open("GET", "dino.json", true);
 xhttp.send();
     // Create Dino Objects
+console.log(dino);
+
 let dinoArray = dino.map((obj) => {
     let dObj = new Dino(obj.species, obj.weight, obj.height, obj.diet, obj.when, obj.where, obj.fact);
     return dObj;
