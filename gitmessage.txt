@@ -1,0 +1,9 @@
+Create event listener for Form submission
+
+--use IIFE to gather user data from form
+--hide the form
+--create array of tiles with dino data
+--randomize facts
+--create grid and grid elements with info from tile array
+--place human tile at position 5
+--add grid to document
