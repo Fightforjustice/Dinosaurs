@@ -1,5 +1,5 @@
-
-dinos = '[
+{
+    "Dinos": [
         {
             "species": "Triceratops",
             "weight": 13000,
@@ -72,4 +72,5 @@ dinos = '[
             "when": "Holocene",
             "fact": "All birds are living dinosaurs."
         }
-    ]'
+    ]
+}
