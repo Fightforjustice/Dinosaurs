@@ -10,7 +10,7 @@ function Dino(species, weight, height, diet, when, where, fact){
     this.where = where;
     this.fact = fact;
 }
-    //use AJAX to import data from json file
+    //use AJAX to import data from json file, closely following example from fellow classmate: https://knowledge.udacity.com/questions/305207
 const xhttp = new XMLHttpRequest();
 let dino = "";
 xhttp.onreadystatechange = function () {
@@ -44,7 +44,7 @@ function Human(weight, height, diet){
 
 var generate = document.getElementById('dino-compare');
 
-    //get human data using IIFE
+    //get human data using IIFE, closely following recommendation from TA: https://knowledge.udacity.com/questions/304096
 generate.addEventListener('submit', () => {
     let human_data = (function getHumanData(){
 
@@ -63,7 +63,7 @@ generate.addEventListener('submit', () => {
         return human;
     })();
 
-    //remove form after one second; allow for gathering of data
+    //remove form after one second; allow for gathering of data; see https://www.sitepoint.com/delay-sleep-pause-wait/
     setTimeout(() => { generate.style = "display: none"; }, 1000);
 
     //populate dinosaur tiles with their info
