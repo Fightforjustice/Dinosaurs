@@ -11,11 +11,22 @@ function Dino(species, weight, height, diet, when, where, fact){
     this.fact = fact;
 }
     // Create Dino Objects
-var data = JSON.parse(dinos);
+const xhttp = new XMLHttpRequest();
+let dino = "";
+xhttp.onreadystatechange = function () {
+  if (this.readyState == 4 && this.status == 200) {
+    // dino = this.responseText;
+    // console.log(dino)
+    dino = JSON.parse(this.responseText);
+    console.log(typeof dino);
+  }
+};
+xhttp.open("GET", "dino.json", true);
+xhttp.send();
 
-let dinoArray = data.map(obj => {
-    let dino = new Dino(obj.species, obj.weight, obj.height, obj.diet, obj.when, obj.where, obj.fact);
-    return dino;
+let dinoArray = dino.map(obj => {
+    let dObj = new Dino(obj.species, obj.weight, obj.height, obj.diet, obj.when, obj.where, obj.fact);
+    return dObj;
 })
 
 function Tile(species, image, fact){
@@ -33,8 +44,8 @@ function Human(weight, height, diet){
 
 var generate = document.getElementById('dino-compare');
 
-generate.addEventListener('submit', (event) => {
-    let human_data = (function getHumanData{
+generate.addEventListener('submit', () => {
+    let human_data = (function getHumanData(){
 
         let weight = document.getElementById('weight').value;
 
@@ -59,6 +70,8 @@ generate.addEventListener('submit', (event) => {
         `${obj.species} lived during the ${obj.when} era.`, `${obj.species} lived in ${obj.where}.`, obj.fact];
 
         let chosenFact = "";
+
+        let image = `images/${obj.species}.png`;
 
         /*TODO: import image according to species*/
         
@@ -117,21 +130,15 @@ generate.addEventListener('submit', (event) => {
 
     let h3 = document.createElement('h3');
 
-    h3.textContent = chosenTile.species;
+    h3.textContent = "Human";
 
     humanTile.append(h3);
 
     let pic = document.createElement('image');
         
-    pic.setAttribute('src', chosenTile.image);
+    pic.setAttribute('src', 'images/human.png');
 
     humanTile.append(pic);
-
-    let para = document.createElement('p');
-
-    para.textContent = chosenTile.fact;
-
-    humanTile.append(para);
 
     grid.append(humanTile);  
 
@@ -169,7 +176,7 @@ generate.addEventListener('submit', (event) => {
     }  
 
     document.append('grid');
-    
+
 });
     // Use IIFE to get human data from form
 
