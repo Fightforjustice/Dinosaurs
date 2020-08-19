@@ -17,7 +17,7 @@ let dino = "";
 
 xhttp.onreadystatechange = function () {
   if (this.readyState == 4 && this.status == 200) {
-    dino = JSON.parse(this.responseText).Dinos;
+    dino = JSON.parse(this.responseText);
     console.log(typeof dino);
   }
 };
