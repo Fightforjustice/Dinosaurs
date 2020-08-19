@@ -12,7 +12,9 @@ function Dino(species, weight, height, diet, when, where, fact){
 }
     //use AJAX to import data from json file, closely following example from fellow classmate: https://knowledge.udacity.com/questions/305207
 const xhttp = new XMLHttpRequest();
+xhttp.overrideMimeType("application/json");
 let dino = "";
+
 xhttp.onreadystatechange = function () {
   if (this.readyState == 4 && this.status == 200) {
     let dinoResponse = this.responseText;
@@ -22,7 +24,7 @@ xhttp.onreadystatechange = function () {
   }
 };
 xhttp.open("GET", "dino.json", true);
-xhttp.send();
+xhttp.send(null);
     // Create Dino Objects
 console.log(dino);
 
