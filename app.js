@@ -11,10 +11,85 @@ function Dino(species, weight, height, diet, when, where, fact){
     this.fact = fact;
 }
     //use AJAX to import data from json file, closely following example from fellow classmate: https://knowledge.udacity.com/questions/305207
-const xhttp = new XMLHttpRequest();
-xhttp.overrideMimeType("application/json");
-let dino = "";
+//const xhttp = new XMLHttpRequest();
+//xhttp.overrideMimeType("application/json");
 
+let dino = [
+        {
+            "species": "Triceratops",
+            "weight": 13000,
+            "height": 114,
+            "diet": "herbivore",
+            "where": "North America",
+            "when": "Late Cretaceous",
+            "fact": "First discovered in 1889 by Othniel Charles Marsh"
+        },
+        {
+            "species": "Tyrannosaurus Rex",
+            "weight": 11905,
+            "height": 144,
+            "diet": "carnivore",
+            "where": "North America",
+            "when": "Late Cretaceous",
+            "fact": "The largest known skull measures in at 5 feet long."
+        },
+        {
+            "species": "Anklyosaurus",
+            "weight": 10500,
+            "height": 55,
+            "diet": "herbivore",
+            "where": "North America",
+            "when": "Late Cretaceous",
+            "fact": "Anklyosaurus survived for approximately 135 million years."
+        },
+        {
+            "species": "Brachiosaurus",
+            "weight": 70000,
+            "height": "372",
+            "diet": "herbivore",
+            "where": "North America",
+            "when": "Late Jurasic",
+            "fact": "An asteroid was named 9954 Brachiosaurus in 1991."
+        },
+        {
+            "species": "Stegosaurus",
+            "weight": 11600,
+            "height": 79,
+            "diet": "herbivore",
+            "where": "North America, Europe, Asia",
+            "when": "Late Jurasic to Early Cretaceous",
+            "fact": "The Stegosaurus had between 17 and 22 seperate places and flat spines."
+        },
+        {
+            "species": "Elasmosaurus",
+            "weight": 16000,
+            "height": 59,
+            "diet": "carnivore",
+            "where": "North America",
+            "when": "Late Cretaceous",
+            "fact": "Elasmosaurus was a marine reptile first discovered in Kansas."
+        },
+        {
+            "species": "Pteranodon",
+            "weight": 44,
+            "height": 20,
+            "diet": "carnivore",
+            "where": "North America",
+            "when": "Late Cretaceous",
+            "fact": "Actually a flying reptile, the Pteranodon is not a dinosaur."
+        },
+        {
+            "species": "Pigeon",
+            "weight": 0.5,
+            "height": 9,
+            "diet": "herbivore",
+            "where": "World Wide",
+            "when": "Holocene",
+            "fact": "All birds are living dinosaurs."
+        }
+    ];
+
+/*
 xhttp.onreadystatechange = function () {
   if (this.readyState == 4 && this.status == 200) {
     dino = JSON.parse(this.responseText);
@@ -26,6 +101,7 @@ xhttp.open("GET", "dino.json", true);
 xhttp.send(null);
     // Create Dino Objects
 console.log(dino);
+*/
 
 let dinoArray = dino.map((obj) => {
     let dObj = new Dino(obj.species, obj.weight, obj.height, obj.diet, obj.when, obj.where, obj.fact);
