@@ -17,12 +17,11 @@ let dino = "";
 
 xhttp.onreadystatechange = function () {
   if (this.readyState == 4 && this.status == 200) {
-    let dinoResponse = this.responseText;
-    console.log(dinoResponse)
-    dino = JSON.parse(dinoResponse).Dinos;
+    dino = JSON.parse(this.responseText).Dinos;
     console.log(typeof dino);
   }
 };
+
 xhttp.open("GET", "dino.json", true);
 xhttp.send(null);
     // Create Dino Objects
